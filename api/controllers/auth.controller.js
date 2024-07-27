@@ -1,7 +1,8 @@
 import User from "../models/user.model.js"
 import bcrypt from "bcrypt"
+import { errorHandler } from "../utils/error.js"
 
-export const signin = async (req, res) => {
+export const signin = async (req, res, next) => {
     try{
         const { username, email, password } = req.body
         const newEmail = email.trim().toLowerCase()
@@ -31,9 +32,9 @@ export const signin = async (req, res) => {
         res.status(201).json(`Utilisateur  ${newUser.email} a bien été  ajouté avec succès`)
     
 
-    }catch(err){
-        console.log(err)
-        return res.status(403).json({message:"Vous peut-etre que vos informatios existent déjà"})
+    }catch(error){
+        console.log(error)
+        next(errorHandler(550, "Erreur de la fonction"))
     }
 
 } 

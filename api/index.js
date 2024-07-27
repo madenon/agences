@@ -16,6 +16,16 @@ const app = express()
 app.use(express.json())
 app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter)
+app.use((error, req, res, next)=>{
+    const statusCode = error.statusCode || 500
+    const message = error.message||"Erreur interne du serveur";
+    return res.status(statusCode).json({
+        success:false,
+        statusCode,
+        message
+    })
+
+})
 
 app.use(express.json())
 app.get('/', (req, res) =>{
