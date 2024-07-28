@@ -16,21 +16,19 @@ const app = express()
 app.use(express.json())
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500
-    const message = err.message || "Cela puet-etre dû à une informations erronée  ou vous avez oublié un champ obligatoire, soit s'il s'agit de la connexion verifer bien le mot de passe et email";
-    return res.status(statusCode).json({
-        success: false,
-        statusCode,
-        message
-    });
+app.use((err, req, res, next) =>{
 
-})
+const statusCode = err.statusCode || 500;
+const message = err.message || "Erreur interne du serveur";
+return res.status(statusCode).json({
+    success:false,
+    statusCode,
+    message
+});
 
-app.use(express.json())
-app.get('/', (req, res) => {
-    res.json({ message: "Hello" })
-})
+});
+
+
 
 
 

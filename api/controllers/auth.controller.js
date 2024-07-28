@@ -16,7 +16,7 @@ export const signup = async (req, res, next) => {
         // }
 
         if (password !== password2) {
-            return res.status(422).json({ message: "Mot de passe non confrome" })
+            return next(errorHandler(422, "Les mots de passe ne sont pas identique"))
 
         } else {
             password === password2
@@ -33,7 +33,7 @@ export const signup = async (req, res, next) => {
 
 
         if (password.trim().length < 8) {
-            return res.status(402).json({ message: "Le mot de passe doit contenir au moins 8 caractères les espaces sont pas autorisés" })
+            return  next(errorHandler("Le mot de passe ne doit pas etre inféieur à 8"))
                 ;
         }
 
@@ -56,11 +56,12 @@ export const signin = async (req, res, next) => {
     const { email, password } = req.body
     try {
         // on verifie si l utilisateur existe déjà 
-        const validUser = await User.findOne({ email })
-        if (!validUser) return next(404, "Utilisateur n'existe pas , vous n'avez pas de compte")
+        const newEmail = email.trim()
+        const validUser = await User.findOne({ email:newEmail })
+        if (!validUser) return next(errorHandler(404, "Utilisateur n'existe pas , vous n'avez pas de compte"))
         // verifier si le  mot de passe est correct 
 
-        const validePassword = bcrypt.compareSync(password, validUser.password)
+        const validePassword = bcrypt.compareSync(password.trim(), validUser.password.trim())
         if (!validePassword) return next(errorHandler(401, "Mot de passe invalide"))
          const token = jwt.sign({id:validUser._id}, process.env.JWT_SECRET)
         const {password: pass, ...rest} = validUser._doc;
