@@ -1,13 +1,14 @@
 import User from "../models/user.model.js"
 import bcrypt from "bcrypt"
 import { errorHandler } from "../utils/error.js"
+import jwt from 'jsonwebtoken'
 
-export const signin = async (req, res, next) => {
-    try{
+export const signup = async (req, res, next) => {
+    try {
         const { username, email, password, password2 } = req.body
         const newEmail = email.trim().toLowerCase()
-    
-       
+
+
         // if (!username || !email || !password) {
         //     console.log(error)
         //     next(errorHandler(550, "Les champs ne doivent pas etre vide"))
@@ -15,38 +16,61 @@ export const signin = async (req, res, next) => {
         // }
 
         if (password !== password2) {
-            return  res.status(422).json({message:"Mot de passe non confrome"})
-            
-          } else{
-             password === password2
-          }
-        // const existEmail = await User.findOne({ email })
-        // if (existEmail) {
-        //     return res.status(422).json({ message: "cet Email existe déjà" })
-        // }
+            return res.status(422).json({ message: "Mot de passe non confrome" })
 
-       
-    
-        // const existUsername = await User.findOne({ username })
-        // if (existUsername) {
-        //     return res.status(422).json({ message: "Cet nom existe déjà" })
-        // }
-    
-    
+        } else {
+            password === password2
+        }
+
+
+        const existEmail = await User.findOne({ email })
+        if (existEmail) return next(errorHandler(422, "cet Email existe déjà"))
+
+
+
+        const existUsername = await User.findOne({ username })
+        if (existUsername) return next(errorHandler(422, "cet nom existe déjà"))
+
+
         if (password.trim().length < 8) {
             return res.status(402).json({ message: "Le mot de passe doit contenir au moins 8 caractères les espaces sont pas autorisés" })
                 ;
         }
-    
+
         const hashedPassword = await bcrypt.hash(password, 10)
         const newUser = new User({ username, email: newEmail, password: hashedPassword })
         await newUser.save()
         res.status(201).json(`Utilisateur  ${newUser.email} a bien été  ajouté avec succès`)
-    
 
-    }catch(error){
+
+    } catch (error) {
         console.log(error)
         next(errorHandler(550, "Erreur de la fonction"))
     }
 
-} 
+}
+
+// la connexion apres nl inscription  
+
+export const signin = async (req, res, next) => {
+    const { email, password } = req.body
+    try {
+        // on verifie si l utilisateur existe déjà 
+        const validUser = await User.findOne({ email })
+        if (!validUser) return next(404, "Utilisateur n'existe pas , vous n'avez pas de compte")
+        // verifier si le  mot de passe est correct 
+
+        const validePassword = bcrypt.compareSync(password, validUser.password)
+        if (!validePassword) return next(errorHandler(401, "Mot de passe invalide"))
+         const token = jwt.sign({id:validUser._id}, process.env.JWT_SECRET)
+        const {password: pass, ...rest} = validUser._doc;
+        res.cookie('access_token', token, {httpOnly:true}).status(200).json(rest)   
+      
+    
+    
+    } catch (error) {
+        next(error)
+
+    }
+
+}

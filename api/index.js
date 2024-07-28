@@ -18,7 +18,7 @@ app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
-    const message = err.message || "Soit vous avez homis un champ ou les memes informations existent déjà";
+    const message = err.message || "Cela puet-etre dû à une informations erronée  ou vous avez oublié un champ obligatoire, soit s'il s'agit de la connexion verifer bien le mot de passe et email";
     return res.status(statusCode).json({
         success: false,
         statusCode,
