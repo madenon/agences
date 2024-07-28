@@ -4,21 +4,33 @@ import { errorHandler } from "../utils/error.js"
 
 export const signin = async (req, res, next) => {
     try{
-        const { username, email, password } = req.body
+        const { username, email, password, password2 } = req.body
         const newEmail = email.trim().toLowerCase()
     
-        if (!username || !email || !password) {
-            return res.status(500).json({ message: "Tout les champs sont requis" })
-        }
-        const existEmail = await User.findOne({ email })
-        if (existEmail) {
-            return res.status(422).json({ message: "cet Email existe déjà" })
-        }
+       
+        // if (!username || !email || !password) {
+        //     console.log(error)
+        //     next(errorHandler(550, "Les champs ne doivent pas etre vide"))
+
+        // }
+
+        if (password !== password2) {
+            return  res.status(422).json({message:"Mot de passe non confrome"})
+            
+          } else{
+             password === password2
+          }
+        // const existEmail = await User.findOne({ email })
+        // if (existEmail) {
+        //     return res.status(422).json({ message: "cet Email existe déjà" })
+        // }
+
+       
     
-        const existUsername = await User.findOne({ username })
-        if (existUsername) {
-            return res.status(422).json({ message: "Cet nom existe déjà" })
-        }
+        // const existUsername = await User.findOne({ username })
+        // if (existUsername) {
+        //     return res.status(422).json({ message: "Cet nom existe déjà" })
+        // }
     
     
         if (password.trim().length < 8) {
