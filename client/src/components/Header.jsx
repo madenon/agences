@@ -10,13 +10,14 @@ export default function Header() {
     <header className='bg-slate-200 shadow-md'>
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
-          <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+          <h1 className='font-bold text-sm sm:text-xl flex  flex-wrap'>
             <span className='text-slate-500'>Nabini</span>
             <span className='text-slate-700'>Agence</span>
           </h1>
         </Link>
         <form className='bg-slate-100 p-3 rounded-lg flex items-center'>
-          <input type="text" placeholder='Recherche ...' className='bg-transparent focus:outline-none w-24 sm:w-64' />
+          <input type="text" placeholder='Recherche ...' className='bg-transparent focus:outline-none w-24 sm:w-64 max-lg:w-20' />
+          {/* A supprimer si le comportement devient bizzare en media scremm  max-lg: */}
           <FaSearch className='text-slate-600' />
 
         </form>
@@ -28,7 +29,7 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ?
               <img className='rounded-full h-7 w-7 object-cover' src= {currentUser.avatar} alt="profile" /> :
-              <li className='text-slate-700 hover:underline uppercase '>Se connecter</li>
+              <li className='text-slate-700 hover:underline bg-orange-500 w-32 h-9 '>Se connecter</li>
 
 
             }
@@ -42,12 +43,3 @@ export default function Header() {
     </header>
   )
 }
-/* {currentUser ? (
-  <img src="" alt="" />
-
-) :(      
-    <li className='text-slate-700 hover:underline uppercase '>Se connecter</li>
-
-
-  })
-    */
