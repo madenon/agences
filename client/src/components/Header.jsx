@@ -29,7 +29,7 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ?
               <img className='rounded-full h-7 w-7 object-cover' src= {currentUser.avatar} alt="profile" /> :
-              <li className='text-slate-700 hover:underline bg-orange-500 w-32 h-9 '>Se connecter</li>
+              <li className='text-slate-700 hover:underline bg-orange-500 w-32 h-7 rounded-[20px] border-r-2 text-center uppercase'>Se connecter</li>
 
 
             }

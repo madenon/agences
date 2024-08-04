@@ -181,7 +181,7 @@ export default function Profile() {
           type="password" placeholder='Confirmer votre mot de passe' id='password2' /> */}
 
         <button  disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95'>
-          {loading ? 'Loading':"Mettre à jour"}
+          {loading ? 'Loading':"Mettre à jour vos informations"}
         </button>
         <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to="/create-listing">Créer une annonce</Link>
       </form>
