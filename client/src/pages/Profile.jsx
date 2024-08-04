@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app } from '../firebase'
+import { updateUserStart, updateUserSuccess, updateUserFailure } from '../redux/user/userSlice'
 
 export default function Profile() {
   const fileRef = useRef(null)
-  const { currentUser } = useSelector((state) => state.user)
+  const { currentUser, loading, error } = useSelector((state) => state.user)
   const [file, setFile] = useState(undefined)
   const [filePerc, setFilePerc] = useState(0)
   const [fileUploadError, setFileUplodError] = useState(false)
   const [formData, setFormData] = useState({});
-  console.log(formData)
-  console.log(filePerc)
-  console.log(fileUploadError)
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const dispatch = useDispatch()
   //firebase storage 
   // service firebase.storage {
   //   match /b/{bucket}/o {
@@ -52,6 +52,41 @@ export default function Profile() {
     )
   }
 
+  const handleChange = (e)  =>{
+    setFormData({...formData, [e.target.id]:e.target.value})
+
+
+  }
+
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body :JSON.stringify(formData),
+
+      });
+      const data = await res.json();
+      if(data.success === false){
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+      dispatch(updateUserSuccess(data))
+      setUpdateSuccess(true)
+
+      
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+      
+    }
+
+
+  }
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -60,7 +95,7 @@ export default function Profile() {
        font-semibold text-center my-7'>
         Mon Profile
       </h1>
-      <form className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
 
         <input onChange={(e) => setFile(e.target.files[0])}
           type="file"
@@ -92,21 +127,31 @@ export default function Profile() {
         </p>
 
         <input className='border p-3 rounded-lg outline-none'
-          type="text" placeholder='Nom utilisateur' id="username" />
+          type="text" placeholder='Nom utilisateur' id="username"
+          defaultValue={currentUser.username}
+          onChange={handleChange}
+           />
         <input className='border p-3 rounded-lg outline-none'
-          type="email" placeholder='Email utilisateur' id='email' />
+          type="email" placeholder='Email utilisateur' id='email'
+          defaultValue={currentUser.email}
+          onChange={handleChange}
+          />
 
         <input className='border p-3 rounded-lg outline-none'
-          type="password" placeholder='Mot de passe' id='password' />
-        <input className='border p-3 rounded-lg outline-none'
-          type="password" placeholder='Confirmer votre mot de passe' id='password2' />
+          type="password" placeholder='Mot de passe' id='password'  />
+        {/* <input className='border p-3 rounded-lg outline-none'
+          type="password" placeholder='Confirmer votre mot de passe' id='password2' /> */}
 
-        <button className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95'>Mettre a jour</button>
+        <button  disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95'>
+          {loading ? 'Loading':"Mettre à jour"}
+        </button>
       </form>
       <div className="flex justify-between mt-5">
         <span className='text-red-700 cursor-pointer'>Supprimer le compte</span>
         <span className='text-red-700 cursor-pointer'>Déconnexion</span>
       </div>
+      <p className='text-red-700 mt-5'>{error ? error :""}</p>
+      <p className='text-green-700 mt-5'>{updateSuccess ? "Les données de lutilisateur à bien été mis à jour avec succès" :""}</p>
     </div>
   )
 }
