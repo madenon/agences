@@ -104,7 +104,7 @@ export default function Profile() {
         <button className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95'>Mettre a jour</button>
       </form>
       <div className="flex justify-between mt-5">
-        <span className='text-red-700 cursor-pointer'>Supprimer Votre compte</span>
+        <span className='text-red-700 cursor-pointer'>Supprimer le compte</span>
         <span className='text-red-700 cursor-pointer'>Déconnexion</span>
       </div>
     </div>
