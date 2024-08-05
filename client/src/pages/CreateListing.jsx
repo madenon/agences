@@ -193,7 +193,7 @@ return (
                 <div className="flex flex-wrap gap-6">
                     <div className="flex items-center gap-2">
                         <input type="number" id='bedrooms' min="1" max="10" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.bedrooms} />
-                        <p>Lits</p>
+                        <p>Chambres</p>
                     </div>
 
                     <div className="flex items-center gap-2">
