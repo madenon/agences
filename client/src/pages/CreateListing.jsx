@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app } from "../firebase"
 import { useSelector } from 'react-redux'
+import {  useNavigate } from 'react-router-dom'
+
 export default function CreateListing() {
     const { currentUser } = useSelector(state => state.user)
-
     const [files, setFiles] = useState([])
+    const navigate= useNavigate()
     const [formData, setFormData] = useState({
         imageUrls: [],
         name: '',
@@ -15,14 +17,10 @@ export default function CreateListing() {
         bedrooms: 1,
         bathrooms: 1,
         regularPrice: 1000,
-        discountPrice: 500,
+        discountPrice: 50,
         offer: false,
         parking: false,
         furnished: false,
-
-      
-
-
 
 });
 const [imageUploadError, setImageUploadError] = useState(false)
@@ -135,6 +133,8 @@ const handleSubmitForm = async (e) => {
 
         }
 
+        navigate(`/listing/${data._id}`)
+
     } catch (error) {
         setError(error.message)
         setLoading(false)
@@ -210,15 +210,16 @@ return (
 
                         </div>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <input type="number" id='discountPrice' min="1000" max="5000" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.discountPrice} />
+                    {formData.offer && <div className="flex flex-col items-center gap-2">
+                        <input type="number" id='discountPrice' min="50" max="500" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.discountPrice} />
                         <div className="flex flex-col items-center">
-                            <p>Prix ​​réduit</p>
+                            <p>Prix ​​rémise  poar mois </p>
                             <span className='text-xs'>(Dirham  / Mois)</span>
 
 
                         </div>
-                    </div>
+                    </div> }
+                    
 
                 </div>
             </div>
@@ -246,7 +247,7 @@ return (
                 ))
                 }
 
-                <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-80'>
+                <button disabled={loading ||  uploading } className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-80'>
                     {loading ? "Création..." : " Créer une annonce"}
                 </button>
                 {error && <p className='text-red-700'>{error}</p>}
