@@ -99,9 +99,9 @@ export const geListingst = async (req, res, next) => {
             type = { $in: ['sale', 'rent'] }
         }
 
-        let searchTerm = req.query.searchTerm || '';
+        const searchTerm = req.query.searchTerm || '';
         const sort = req.query.sort || 'createdAt';
-        const order = req.query.sort || 'desc';
+        const order = req.query.order || 'desc';
 
         const listings = await Listing.find({
 
