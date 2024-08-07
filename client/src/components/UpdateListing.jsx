@@ -15,6 +15,8 @@ export default function UpdateListing() {
     const [formData, setFormData] = useState({
         imageUrls: [],
         name: '',
+        ville: '',
+        quartier: '',
         description: '',
         address: '',
         type: "rent",
@@ -176,6 +178,13 @@ export default function UpdateListing() {
 
                     <input type="text" placeholder="Adresse de la maison ou l'appartement"
                         className='border p-3 rounded-lg' id='address' required onChange={handleChnage} value={formData.address} />
+
+
+<input type="text" placeholder="Le quartier de la maison ou l'appartement"
+                        className='border p-3 rounded-lg' id='quartier' required onChange={handleChnage} value={formData.quartier} />
+
+<input type="text" placeholder="La ville  de la maison ou l'appartement"
+                        className='border p-3 rounded-lg' id='ville' required onChange={handleChnage} value={formData.ville} />
 
 
 

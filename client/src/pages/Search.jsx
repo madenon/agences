@@ -11,7 +11,8 @@ export default function Search() {
         furnished: false,
         offer: false,
         sort: 'created_at',
-        order: 'desc'
+        order: 'desc',
+       
     });
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([])

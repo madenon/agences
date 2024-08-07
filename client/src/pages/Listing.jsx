@@ -90,7 +90,8 @@ export default function Listing() {
                         {listing.type === 'rent' && ' / Mois'}
 
                     </p>
-
+                    <p>Ville :{listing.ville}</p>
+                    <p>Quartier :{listing.quartier}</p>
 
                     <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
                         <FaMapMarkerAlt className='text-green-700' />
