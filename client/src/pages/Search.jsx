@@ -49,11 +49,14 @@ export default function Search() {
 
         const fetchListing = async () => {
             setLoading(true);
+            setShowMore(false)
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json()
             if(data.length >8){
                 setShowMore(true)
+            }else{
+                setShowMore(false)
             }
             setListings(data);
             setLoading(false)
@@ -113,7 +116,7 @@ export default function Search() {
         const searchQuery =urlParams.toString();
         const res = await fetch(`/api/listing/get?${searchQuery}`);
         const data = await res.json()
-        if(data.length > 9){
+        if(data.length < 9){
             setShowMore(false)
         }
         setListings([...listings, ...data])
@@ -227,7 +230,7 @@ export default function Search() {
 
                     {showMore && (
                         <button onClick={onShowMoreClick} className='text-green-700 hover:underline p-7 text-center'>
-                            Voir plus de'annonce
+                            Voir plus d'annonce
 
                         </button>
                     )}
