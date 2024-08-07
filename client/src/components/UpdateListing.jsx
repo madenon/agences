@@ -267,7 +267,7 @@ export default function UpdateListing() {
                     }
 
                     <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-80'>
-                        {loading ? "Modifier..." : " Mofication de  l'annonce"}
+                        {loading ? "Modification..." : " Mofication de  l'annonce"}
                     </button>
                     {error && <p className='text-red-700'>{error}</p>}
                 </div>

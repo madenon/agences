@@ -24,7 +24,7 @@ export default function Listing() {
     const [error, setError] = useState(false)
     const [copied, setCopied] = useState(false);
     const [contact, setContact] = useState(false);
-    const  {currentUser}  = useSelector((state) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
 
 
     useEffect(() => {
@@ -77,17 +77,21 @@ export default function Listing() {
                 </div>
                 {copied && (
                     <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>
-                        Link copied!
+                        Le lien
                     </p>
                 )}
                 <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
-                <p className='text-2xl font-semibold'>
-              {listing.name}   ----{' '} 
-              {listing.offer
-                ? listing.discountPrice.toLocaleString('fr-FR')
-                : listing.regularPrice.toLocaleString('fr-FR')}DH
-              {listing.type === 'rent' && ' / Mois'} 
-            </p>
+                    <p className='text-2xl font-semibold'>
+                        {listing.name}   --{' '}
+                        prix initial  {listing.regularPrice}DH {' Prix à payer '}
+                        {
+                            +listing.regularPrice - +listing.discountPrice
+                        }DH
+                        {listing.type === 'rent' && ' / Mois'}
+
+                    </p>
+
+
                     <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
                         <FaMapMarkerAlt className='text-green-700' />
                         {listing.address}
@@ -98,7 +102,8 @@ export default function Listing() {
                         </p>
                         {listing.offer && (
                             <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                                {+listing.regularPrice - +listing.discountPrice}  DH À Payer
+                                {+listing.discountPrice} DH Remise /Mois
+
                             </p>
                         )}
                     </div>

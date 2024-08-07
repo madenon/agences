@@ -16,13 +16,14 @@ export default function CreateListing() {
         type: "rent",
         bedrooms: 1,
         bathrooms: 1,
-        regularPrice: 1000,
-        discountPrice: 50,
+        regularPrice:0,
+        discountPrice: 0,
         offer: false,
         parking: false,
         furnished: false,
-
-});
+        
+    });
+ 
 const [imageUploadError, setImageUploadError] = useState(false)
 const [uploading, setUploading] = useState(false)
 const [error, setError] = useState(false)
@@ -202,7 +203,7 @@ return (
                     </div>
 
                     <div className="flex flex-col items-center gap-2">
-                        <input type="number" id='regularPrice' min="1000" max="500000" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.regularPrice} />
+                        <input type="number" id='regularPrice' min="300" max="500000" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.regularPrice} />
 
                         <div className="flex flex-col items-center">
                             <p className='text-xs'>Pris par mois</p>
