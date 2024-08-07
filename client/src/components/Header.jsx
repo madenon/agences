@@ -53,7 +53,7 @@ useEffect(() =>{
         <ul className='flex gap-4'>
           <Link to="/"><li className='hidden sm:inline text-slate-700 hover:underline'>Acueil</li>
           </Link>
-          <Link toa='/about'><li className='hidden sm:inline text-slate-700 hover:underline'>Apropos</li>
+          <Link to='/about'><li className='  capitalizesm:inline text-slate-700 hover:underline'>A propos de nous</li>
           </Link>
           <Link to="/profile">
             {currentUser ?
