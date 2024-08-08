@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 }).catch((err) => {
     console.log(err);
 });
+
 const PORT = 5000
 
 const __dirname = path.resolve();
@@ -27,11 +28,15 @@ app.use(cookieParser())
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/listing', listingRouter)
+
 app.use(express.static(path.join(__dirname, '/client/dist')));
-app.use((err, req, res, next) =>{
+
 app.get('*', (req, res) =>{
- res.sendFile(path.join(__dirname,'client','dist', 'index.html'));
-});
+    res.sendFile(path.join(__dirname,'client','dist', 'index.html'));
+   });
+   
+
+app.use((err, req, res, next) =>{
 const statusCode = err.statusCode || 500;
 const message = err.message || "Erreur interne du serveur";
 return res.status(statusCode).json({
