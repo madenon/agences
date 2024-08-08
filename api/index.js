@@ -8,7 +8,7 @@ import path from "path"
 import   cookieParser from "cookie-parser"
 
 dotenv.config()
-mongoose.connect(process.env.MONGO_URI).then(() => {
+mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connexion  a la  base ok')
 }).catch((err) => {
     console.log(err);
