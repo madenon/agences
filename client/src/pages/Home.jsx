@@ -65,12 +65,12 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className="flex flex-col gap-6 p-10 px-3 max-w-6xl mx-auto">
-        <h1 className='text-slate-700 font-bold text-2xl lg'>
-          <p>    <strong className='capitalize'>Bonjour et bienvenue chez nous.</strong> .ça vous arrive parfois lorsque  Vous partez voir un démarcheur ou 
+      <div className="flex flex-col gap-6 p-10 px-3 max-w-6xl mx-auto ">
+        <h3 className='text-gray-600 text-xs sm:text-sm'>
+          <p>    <span className='text-gray-800 text-xs sm:text-sm  font-bold'>Bonjour et bienvenue chez nous.</span> .ça vous arrive parfois lorsque  Vous partez voir un démarcheur ou 
           agencier pour une maison ou appartement <br/> même si vous n'aimez pas l'endroit vous etes oubliger d'accpeter c'est ce pourquoi  on vous propose nos services de voir les offres </p>
-        </h1>
-        <h2 className='text-slate-400 font-bold text-3xl lg:' >
+        </h3>
+        <h2 className='text-slate-400 font-bold text-xl lg:' >
         <br /> Trouver une chambre , un appartement est parfois difficile <br />c'est dans ce sens nous vous facilitons la taches
           <span className='text-gray-300'>en mettant plusieurs offre par  jours pour vous    </span>       </h2>
         <div className="text-gray-400 text-xs sm:text-sm">
@@ -78,7 +78,7 @@ export default function Home() {
           <br />
           vous disposez d'un large éventail de propriétés parmi lesquelles choisir
         </div>
-        <Link to={'/search'} className='sm:text-blue-800 font-bold hover:underline text-2xl'>
+        <Link to={'/search'} className='sm:text-blue-800 font-bold hover:underline text-xl'>
           Allez-y commencer à chercher
         </Link>
       </div>
