@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 }).catch((err) => {
     console.log(err);
 });
+const PORT = 5000
 
 const __dirname = path.resolve();
 const app = express()
@@ -48,5 +49,5 @@ return res.status(statusCode).json({
 
 
 app.listen(5000, () => {
-    console.log(`Server ok au port: http://localhost:${process.env.PORT}`)
+    console.log(`Server ok au port: http://localhost:${PORT}`)
 })
