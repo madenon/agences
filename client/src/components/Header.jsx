@@ -50,10 +50,10 @@ useEffect(() =>{
           {/* A supprimer si le comportement devient bizzare en media scremm  max-lg: */}
 
         </form>
-        <ul className='flex gap-4'>
+        <ul className='flex gap-2'>
           <Link to="/"><li className='hidden sm:inline text-slate-700 hover:underline'>Acueil</li>
           </Link>
-          <Link to='/about'><li className='capitalizesm:inline text-slate-700 hover:underline hidden'>A propos</li>
+          <Link to='/about'><li className='capitalize sm:inline text-slate-700 hover:underline overflow-hidden'>à propos</li>
           </Link>
           <Link to="/profile">
             {currentUser ?

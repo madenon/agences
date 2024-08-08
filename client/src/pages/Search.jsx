@@ -133,7 +133,7 @@ export default function Search() {
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className='flex items-center gap-2'>
             <label className='whitespace-nowrap font-semibold'>
-              Search Term:
+              Recherche:
             </label>
             <input
               type='text'
@@ -154,7 +154,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === 'all'}
               />
-              <span>Rent & Sale</span>
+             <span>Louer/Vendre</span>
             </div>
             <div className='flex gap-2'>
               <input
