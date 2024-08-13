@@ -162,7 +162,7 @@ export default function CreateListing() {
                         className='border p-3 rounded-lg' id='address' required onChange={handleChnage} value={formData.address} />
 
 
-                    <input type="text" placeholder="La ville la oùl'offre est disponible"
+                    <input type="text" placeholder="La ville la où l'offre est disponible"
                         className='border p-3 rounded-lg' id='ville' required onChange={handleChnage} value={formData.ville} />
 
 
@@ -197,7 +197,7 @@ export default function CreateListing() {
                         </div>
 
                         <div className="flex gap-2">
-                            <input type="checkbox" id='offer' placeholder='Offre' className='w-5' onChange={handleChnage} checked={formData.offer} />
+                            <input type="checkbox" id='offer' placeholder='Remise' className='w-5' onChange={handleChnage} checked={formData.offer} />
                             <span>Offre</span>
                         </div>
                     </div>

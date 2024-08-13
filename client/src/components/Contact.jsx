@@ -31,7 +31,8 @@ export default function Contact({ listing }) {
                     <p>Contacter <span className='font-semibold'>{landlord.username}</span>
                         Pour  <span className='font-semibold'>{listing.name.toLowerCase()}</span>
                     </p>
-                    <textarea name="message"
+                   
+                      <textarea name="message"
                         id="message" value={message}
                         onChange={handleMessage}
                         rows={2}
@@ -39,8 +40,10 @@ export default function Contact({ listing }) {
                         placeholder="Laisser un message pour l'annonce"
 
                     ></textarea>
+
+                    
                     <Link to={`mailto:${landlord.email}?subject=voir ${listing.name}&body=${message}`}
-                        className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
+                        className='bg-slate-700 text-white text-center  p-3 uppercase rounded-lg hover:opacity-95'
                     >
                         Envoyer le message
 

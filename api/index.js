@@ -7,6 +7,7 @@ import listingRouter from "./routes/listing.route.js"
 import path from "path"
 import   cookieParser from "cookie-parser"
 
+// configuration 
 dotenv.config()
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connexion  a la  base ok')

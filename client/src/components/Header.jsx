@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa"
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux"
-
 export default function Header() {
   const { currentUser } = useSelector(state => state.user)
 const [searchTerm, setSearchTerm] = useState("")
@@ -50,15 +49,14 @@ useEffect(() =>{
           {/* A supprimer si le comportement devient bizzare en media scremm  max-lg: */}
 
         </form>
-        <ul className='flex gap-1'>
-          <Link to="/"><li className='hidden sm:inline  hover:underline text-purple-700'>acueil</li>
-          </Link>
+        <ul className='flex justify-between  gap-1'>
+        
           <Link to='/about'><li className='sm:inline text-purple-700 hover:underline overflow-hidden'>àpropos</li>
           </Link>
           <Link to="/profile">
             {currentUser ?
               <img className='rounded-full h-3 w-3 object-cover m-2' src= {currentUser.avatar} alt="profile" /> :
-              <li className='hover:underline text-center text-purple-800'>connexion</li>
+              <li className='hover:underline text-center text-purple-800'>Seconnecter</li>
 
 
             }
