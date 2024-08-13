@@ -56,7 +56,7 @@ useEffect(() =>{
           <Link to="/profile">
             {currentUser ?
               <img className='rounded-full h-3 w-3 object-cover m-2' src= {currentUser.avatar} alt="profile" /> :
-              <li className='hover:underline text-center text-purple-800'>Seconnecter</li>
+              <li className='hover:underline text-center text-purple-800'>se connecter</li>
 
 
             }

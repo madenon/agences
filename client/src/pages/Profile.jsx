@@ -3,9 +3,7 @@ import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app } from '../firebase'
-import { updateUserStart, updateUserSuccess, updateUserFailure,
-   deleteUserFailure, deleteUserStart, deleteUserSUccess, logoutUserStart,
-    logoutUserSUccess, logoutUserFailure } from '../redux/user/userSlice'
+import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSUccess, logoutUserStart, logoutUserSUccess, logoutUserFailure } from '../redux/user/userSlice'
 import { Link } from "react-router-dom"
 export default function Profile() {
   const fileRef = useRef(null)
@@ -18,7 +16,14 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [userListings, setUserListings] = useState([])
   const dispatch = useDispatch()
-       request.resource.contentType.matches('image/.*')
+  //firebase storage 
+  // service firebase.storage {
+  //   match /b/{bucket}/o {
+  //     match /{allPaths=**} {
+  //       allow read;
+  //       allow write: if 
+  //       request.resource.size < 2 * 1024 * 1024 &&
+  //       request.resource.contentType.matches('image/.*')
 
 
   useEffect(() => {
@@ -32,7 +37,7 @@ export default function Profile() {
     const fileName = new Date().getTime() + file.name
     const storageRef = ref(storage, fileName)
     const uploadTask = uploadBytesResumable(storageRef, file)
-// Les revisions 
+
     uploadTask.on('state_changed', (snapshot) => {
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       setFilePerc(Math.round(progress))
