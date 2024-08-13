@@ -5,7 +5,7 @@ import authRouter from "./routes/auth.route.js"
 import userRouter from "./routes/user.route.js"
 import listingRouter from "./routes/listing.route.js"
 import path from "path"
-import   cookieParser from "cookie-parser"
+import cookieParser from "cookie-parser"
 
 // configuration 
 dotenv.config()
