@@ -218,7 +218,7 @@ export default function CreateListing() {
 
                             <div className="flex flex-col items-center">
                                 <p className='text-xs'>Pris par mois</p>
-                                <span>(Dirham  / Mois)</span>
+                                <span>(Fcfa  / Mois)</span>
 
                             </div>
                         </div>
@@ -226,7 +226,7 @@ export default function CreateListing() {
                             <input type="number" id='discountPrice' min="50" max="500" required className='p-3 border border-gray-300 rounded-lg' onChange={handleChnage} value={formData.discountPrice} />
                             <div className="flex flex-col items-center">
                                 <p>Prix ​​rémise  poar mois </p>
-                                <span className='text-xs'>(Dirham  / Mois)</span>
+                                <span className='text-xs'>(Fcfa  / Mois)</span>
 
 
                             </div>

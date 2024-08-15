@@ -24,7 +24,7 @@ export default function ListingItem({ listing }) {
 
                     <p className='text-slate-500 mt-2 font-semibold'>
                         {listing.regularPrice - listing.discountPrice}
-                        {listing.type === 'rent' && ' / Mois'} 
+                        {listing.type === 'rent' && 'Fcfa / Mois'}   
                     </p>
 
                     <div className="text-slate-700">

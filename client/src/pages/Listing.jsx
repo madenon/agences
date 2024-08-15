@@ -83,11 +83,11 @@ export default function Listing() {
                 <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
                     <p className='text-2xl font-semibold'>
                         {listing.name}   --{' '}
-                        prix initial  {listing.regularPrice}DH {' Prix à payer '}
+                        prix initial  {listing.regularPrice} Fcfa{' Prix à payer '}
                         {
                             +listing.regularPrice - +listing.discountPrice
                         } Fcfa
-                        {listing.type === 'rent' && ' / Mois'}
+                        {listing.type === 'rent' && ' Fcfa/ Mois'}
 
                     </p>
                     <p>Ville :{listing.ville}</p>
