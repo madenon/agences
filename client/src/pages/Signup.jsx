@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
-
-
 export default function Signup() {
   const [formData, setFormData] = useState({})
   const [error, setError] = useState(null)
@@ -63,14 +61,17 @@ export default function Signup() {
 
         <input type="text" placeholder='Nom d utilisateur'
           className='border p-3 rounded-lg' id='username'
+          require
           onChange={handleChnage}
         />
         <input type="email" placeholder='Email d utilisateur'
           className='border p-3 rounded-lg' id='email'
+          require
           onChange={handleChnage}
         />
         <input type="password" placeholder='Mot de passe d utilisateur'
           className='border p-3 rounded-lg' id='password'
+          require
           onChange={handleChnage}
         />
         <input type="password" placeholder='Confirmer le mot de passe'

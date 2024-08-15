@@ -86,7 +86,7 @@ export default function Listing() {
                         prix initial  {listing.regularPrice}DH {' Prix à payer '}
                         {
                             +listing.regularPrice - +listing.discountPrice
-                        }DH
+                        } Fcfa
                         {listing.type === 'rent' && ' / Mois'}
 
                     </p>

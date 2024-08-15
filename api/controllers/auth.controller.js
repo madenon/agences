@@ -8,13 +8,7 @@ export const signup = async (req, res, next) => {
         const { username, email, password, password2 } = req.body
         const newEmail = email.trim().toLowerCase()
 
-
-        // if (!username || !email || !password) {
-        //     console.log(error)
-        //     next(errorHandler(550, "Les champs ne doivent pas etre vide"))
-
-        // }
-
+ if(!username ||!email ||!password || !password2) return next(errorHandler(400, "champs vide impossible"))
         if (password !== password2) {
             return next(errorHandler(422, "Les mots de passe ne sont pas identique"))
 
@@ -44,8 +38,8 @@ export const signup = async (req, res, next) => {
 
 
     } catch (error) {
-        console.log(error)
-        next(errorHandler(550, "Erreur de la fonction"))
+        next(error)
+
     }
 
 }
@@ -61,7 +55,9 @@ export const signin = async (req, res, next) => {
         if (!validUser) return next(errorHandler(404, "Utilisateur n'existe pas , vous n'avez pas de compte"))
         // verifier si le  mot de passe est correct 
 
-        const validePassword = bcrypt.compareSync(password.trim(), validUser.password.trim())
+        const passwordValid = password.trim();
+        const passwordValid2 = validUser.password.trim()
+        const validePassword = bcrypt.compareSync(passwordValid, passwordValid2)
         if (!validePassword) return next(errorHandler(401, "Mot de passe invalide"))
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET)
         const { password: pass, ...rest } = validUser._doc;

@@ -48,7 +48,6 @@ export default function Profile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setFormData({ ...formData, avatar: downloadURL })
-
         });
       },
     )
@@ -56,8 +55,6 @@ export default function Profile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
-
-
   }
 
 
@@ -80,17 +77,11 @@ export default function Profile() {
       }
       dispatch(updateUserSuccess(data))
       setUpdateSuccess(true)
-
-
     } catch (error) {
       dispatch(updateUserFailure(error.message));
 
     }
-
-
   }
-
-
   const handleDelete = async () => {
     try {
       dispatch(deleteUserStart());
@@ -106,9 +97,7 @@ export default function Profile() {
 
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
-
     }
-
   }
 
 
@@ -124,9 +113,7 @@ export default function Profile() {
       dispatch(logoutUserSUccess(data))
     } catch (error) {
       dispatch(logoutUserFailure(data.message))
-
     }
-
   }
 
   const handelShowListing = async () => {
@@ -143,7 +130,6 @@ export default function Profile() {
 
     } catch (error) {
       setShowListingError(true)
-
     }
 
   }
@@ -165,9 +151,7 @@ export default function Profile() {
         prev.filter((listing)=> listing._id !== listingId));
     } catch (error) {
       console.log(error.message)
-      
     }
-
   }
 
   

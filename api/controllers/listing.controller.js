@@ -21,7 +21,7 @@ export const editListing = async (req, res, next) => {
     }
 
     if (req.user.id !== listing.userRef) {
-        return next(errorHandler(401, "Vous puvez seuelemt mettre a jour vos annonces "))
+        return next(errorHandler(401, "Vous puvez seuelemt mettre a jour vos annonces"))
     }
     try {
 
