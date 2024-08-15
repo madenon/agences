@@ -87,7 +87,7 @@ export default function Listing() {
                         {
                             +listing.regularPrice - +listing.discountPrice
                         } Fcfa
-                        {listing.type === 'rent' && ' Fcfa/ Mois'}
+                        {listing.type === 'rent' && '/ Mois'}
 
                     </p>
                     <p>Ville :{listing.ville}</p>

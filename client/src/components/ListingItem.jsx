@@ -23,8 +23,8 @@ export default function ListingItem({ listing }) {
                     </p>
 
                     <p className='text-slate-500 mt-2 font-semibold'>
-                        {listing.regularPrice - listing.discountPrice}
-                        {listing.type === 'rent' && 'Fcfa / Mois'}   
+                        {listing.regularPrice - listing.discountPrice} Fcfa
+                        {listing.type === 'rent' && ' / Mois'}   
                     </p>
 
                     <div className="text-slate-700">
